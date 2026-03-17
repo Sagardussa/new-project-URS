@@ -1,0 +1,277 @@
+/* Dynamic Form Component Styles */
+
+/* Remove number input spinners */
+.no-spinner::-webkit-inner-spin-button,
+.no-spinner::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.no-spinner {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/* ng-select custom styling */
+::ng-deep .custom-ng-select .ng-select-container {
+  min-height: 42px;
+  border: 1px solid #d1d5db;
+  border-radius: 0.5rem;
+  padding: 2px 8px;
+  background-color: #fff;
+  transition: all 0.2s ease;
+}
+
+::ng-deep .custom-ng-select.ng-select-focused .ng-select-container {
+  border-color: #8b5cf6;
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.15);
+}
+
+::ng-deep .custom-ng-select.ng-select-disabled .ng-select-container {
+  background-color: #f3f4f6;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+::ng-deep .custom-ng-select.ng-invalid-touched .ng-select-container {
+  border-color: #ef4444;
+}
+
+/* Dropdown panel styling */
+::ng-deep .ng-dropdown-panel {
+  z-index: 10000 !important;
+  position: absolute !important;
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  margin-top: 4px;
+  overflow: hidden;
+}
+
+::ng-deep .ng-dropdown-panel .ng-dropdown-panel-items {
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+::ng-deep .ng-dropdown-panel .ng-option {
+  padding: 10px 14px;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer !important;
+  pointer-events: auto !important;
+  transition: background-color 0.15s ease;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+::ng-deep .ng-dropdown-panel .ng-option:hover,
+::ng-deep .ng-dropdown-panel .ng-option.ng-option-marked {
+  background-color: #f3f4f6;
+}
+
+::ng-deep .ng-dropdown-panel .ng-option.ng-option-selected {
+  background-color: #8b5cf6;
+  color: #ffffff;
+  font-weight: 500;
+}
+
+::ng-deep .ng-dropdown-panel .ng-option.ng-option-selected.ng-option-marked {
+  background-color: #7c3aed;
+  color: #ffffff;
+}
+
+/* Placeholder styling */
+::ng-deep .custom-ng-select .ng-placeholder {
+  font-size: 14px;
+  color: #9ca3af;
+}
+
+/* Selected value styling */
+::ng-deep .custom-ng-select .ng-value {
+  font-size: 14px;
+  color: #1f2937;
+}
+
+/* Hide placeholder when value selected */
+::ng-deep .custom-ng-select.ng-select-single.ng-has-value .ng-placeholder {
+  display: none !important;
+}
+
+/* Clear button styling */
+::ng-deep .custom-ng-select .ng-clear-wrapper {
+  color: #9ca3af;
+}
+
+::ng-deep .custom-ng-select .ng-clear-wrapper:hover {
+  color: #6b7280;
+}
+
+/* Arrow indicator */
+::ng-deep .custom-ng-select .ng-arrow-wrapper {
+  padding-right: 4px;
+}
+
+::ng-deep .custom-ng-select .ng-arrow {
+  border-color: #9ca3af transparent transparent;
+  transition: transform 0.2s ease;
+}
+
+::ng-deep .custom-ng-select.ng-select-opened .ng-arrow {
+  transform: rotate(180deg);
+}
+
+/* Input and textarea focus states */
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+/* Primary color variables (matching the gradient theme) */
+.focus\:ring-primary-500:focus {
+  --tw-ring-color: rgba(139, 92, 246, 0.5);
+}
+
+.focus\:border-primary-500:focus {
+  border-color: #8b5cf6;
+}
+
+/* Form field wrapper */
+.form-field-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* Textarea styling */
+textarea {
+  font-family: inherit;
+  min-height: 100px;
+}
+
+/* Date input styling */
+input[type="date"] {
+  position: relative;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.15s ease;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+  opacity: 1;
+}
+
+/* File input label hover effect */
+.file-label:hover {
+  background-color: #f9fafb;
+}
+
+/* Radio and Checkbox custom styling */
+input[type="radio"],
+input[type="checkbox"] {
+  accent-color: #8b5cf6;
+}
+
+input[type="radio"]:focus,
+input[type="checkbox"]:focus {
+  outline: 2px solid rgba(139, 92, 246, 0.3);
+  outline-offset: 2px;
+}
+
+/* Button gradient hover effect */
+.btn-gradient {
+  background: linear-gradient(to right, #9333ea, #4f46e5);
+  transition: all 0.2s ease;
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(to right, #7e22ce, #4338ca);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+}
+
+/* Error state styling */
+.field-error {
+  animation: shake 0.3s ease-in-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+  
+  ::ng-deep .ng-dropdown-panel {
+    width: 100% !important;
+  }
+}
+
+/* Loading state for file uploads */
+.file-uploading {
+  position: relative;
+  pointer-events: none;
+}
+
+.file-uploading::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Disabled state styling */
+.field-disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Smooth transitions */
+input,
+textarea,
+select,
+button {
+  transition: border-color 0.15s ease, box-shadow 0.15s ease, background-color 0.15s ease;
+}
+
+/* Scrollbar styling for dropdown */
+::ng-deep .ng-dropdown-panel-items::-webkit-scrollbar {
+  width: 6px;
+}
+
+::ng-deep .ng-dropdown-panel-items::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 3px;
+}
+
+::ng-deep .ng-dropdown-panel-items::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+::ng-deep .ng-dropdown-panel-items::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
+
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+

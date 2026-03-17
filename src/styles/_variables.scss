@@ -1,0 +1,35 @@
+// =============================================================================
+// Design tokens – use in components and styles for consistency
+// =============================================================================
+
+// Brand
+$color-primary: #192537;
+$color-primary-alt: #102f5d;
+$color-accent: #ff5757;
+$color-accent-light: rgba(255, 87, 87, 0.2);
+
+// UI
+$color-border: #d1d5db;
+$color-border-focus: #3b82f6;
+$color-bg-input: #ffffff;
+$color-bg-input-disabled: #f9fafb;
+$color-placeholder: #9ca3af;
+$color-text: #111827;
+$color-error: #ef4444;
+$color-success: #10b981;
+
+// Focus ring (matches existing global input focus)
+$focus-ring-color: #3b82f6;
+$focus-ring-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+
+// Spacing / sizing
+$input-min-height: 40px;
+$input-padding: 8px 12px;
+$input-border-radius: 6px;
+$input-font-size: 14px;
+
+// Tag input (ng2-tag-input)
+$tag-input-border: #bbbec2;
+$tag-input-bg: #f7f7f7;
+$tag-color: #e4e7e7;
+$tag-bg: #f3f6f8;

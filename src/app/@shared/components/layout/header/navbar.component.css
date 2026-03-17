@@ -1,0 +1,103 @@
+/* User Dropdown Animation */
+.user-dropdown {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.user-dropdown.fade-out {
+  opacity: 0;
+  transform: translateY(-10px);
+}
+
+.user-dropdown.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Left Side Sidebar Styles */
+.sidebar-menu {
+  transition: transform 0.3s ease-in-out;
+  box-shadow: 4px 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.sidebar-backdrop {
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+    transform: translateY(0);
+  }
+}
+
+.animate-slideDown {
+  animation: slideDown 0.3s ease-out;
+}
+
+/* Ensure sidebar scrolling on small devices */
+.sidebar-menu .overflow-y-auto {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+}
+
+.sidebar-menu .overflow-y-auto::-webkit-scrollbar {
+  width: 6px;
+}
+
+.sidebar-menu .overflow-y-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sidebar-menu .overflow-y-auto::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.3);
+  border-radius: 3px;
+}
+
+.sidebar-menu .overflow-y-auto::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Smooth rotation for dropdown arrow */
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+/* Active state for sidebar links - Referral Theme */
+.sidebar-active {
+  background: rgba(255, 87, 87, 0.2) !important;
+  color: white !important;
+  font-weight: 600;
+  border-left: 3px solid #FF5757;
+  padding-left: calc(0.75rem - 3px);
+}
+
+/* Hover effect enhancement */
+.sidebar-menu a:hover svg,
+.sidebar-menu button:hover svg {
+  transform: scale(1.1);
+  transition: transform 0.2s ease;
+}
+
+/* Menu item focus state */
+.sidebar-menu a:focus,
+.sidebar-menu button:focus {
+  outline: 2px solid rgba(255, 255, 255, 0.3);
+  outline-offset: 2px;
+}

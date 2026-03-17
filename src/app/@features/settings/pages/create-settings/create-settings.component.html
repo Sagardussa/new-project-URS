@@ -1,0 +1,44 @@
+<section class="bg-[#F8F8F8] mx-auto px-4 sm:px-6 lg:px-8 pt-14 lg:mt-16 h-screen">
+  <div class="flex lg:flex-row gap-3 lg:gap-6 flex-col">
+    <div class="w-full">
+      <div
+        class="bg-[#FFFFFF] max-md:mt-0 lg:mt-6 border-2 border-solid border-[#FFFFFF] shadow-xl rounded-[10px] lg:pb-10 lg:h-fit"
+      >
+        <div class="inline-block p-4 lg:p-6 space-y-4">
+          <div
+            class="flex items-center gap-2 text-[#192537] text-[14px] lg:text-[15px] font-bold cursor-pointer bg-transparent border-none p-0"
+          >
+
+            <span
+              class="relative after:absolute after:h-[2px] lg:after:w-[36px] after:w-[28px] after:-bottom-1 after:bg-[#FF5757] after:left-0 after:rounded-s-2xl after:rounded-e-2xl"
+            >
+              Settings
+            </span>
+          </div>
+        </div>
+
+        <div class="mx-4 pb-6">
+          @if (loading) {
+            <p class="text-[#192537CC]">Loading settings…</p>
+          } @else if (loadError) {
+            <p class="text-red-600 font-medium">Failed to load settings or settings not found.</p>
+          } @else {
+            <app-dynamic-form
+              sectionSlug="settings"
+              sectionName=""
+              [sectionFields]="settingsFormFields"
+              [initialData]="initialData"
+              [submitting]="submitting"
+              submitButtonText="Update Settings"
+              resetButtonText="Cancel"
+              [columnsCount]="2"
+              (formSubmitted)="onFormSubmitted($event)"
+              (formReset)="goBack()"
+            />
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

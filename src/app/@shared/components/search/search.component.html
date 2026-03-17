@@ -1,0 +1,21 @@
+<div 
+  class="flex items-center space-x-4 me-4 md:me-4 self-center"> 
+  <button (click)="toggleSearch()" class="relative left-[50px] p-2 text-white bg-transparent rounded-full focus:outline-none"
+  >
+    <img class="w-4 h-4" alt="search" src="assets/search.png">
+  </button>
+  <div 
+    class="overflow-hidden"
+    [ngClass]="isExpanded ? 'w-64' : 'w-9'"
+    [ngStyle]="{'transition': 'width 0.5s ease'}">
+    <input 
+      type="text" 
+      placeholder="Search"
+      [(ngModel)]="searchText"
+      (input)="onSearchChange($event)" 
+      language
+      class="w-full py-[4.5px] pe-2 placeholder:text-xs placeholder:font-medium bg-transparent border border-customBlack placeholder:text-customBlack rounded-full focus:outline-none pointer-events-none"
+      [ngClass]="{'ps-[40px] pointer-events-auto bg-white rounded-md': isExpanded, 'ps-[26px] pointer-events-none': !isExpanded}"
+    />
+  </div>
+</div>

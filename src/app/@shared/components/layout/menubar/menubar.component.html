@@ -1,0 +1,74 @@
+<div [ngClass]="navbarClass" class="relative z-25">
+  <div class="mx-auto px-2 sm:px-6 lg:py-2 sm:py-0 lg:px-[25px] 2xl:px-[25px]">
+    <div *ngIf="hideNavbarContent" class="text-center py-2">
+      <a
+        routerLink="/dashboard"
+        routerLinkActive="active"
+        class="flex items-center text-gray-600 rounded-sm"
+      >
+        <span class="text-sm font-semibold cursor-pointer">
+          <i class="bi bi-chevron-left"></i>
+        </span>
+      </a>
+    </div>
+    <div *ngIf="!hideNavbarContent" class="hidden lg:block">
+      <ul class="flex items-center lg:py-2 gap-1">
+        <li class="relative">
+          <a
+            routerLink="/dashboard"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            class="rounded-md px-2.5 font-medium py-3 text-[13px] hover:underline-offset-1 hover:text-black cursor-pointer"
+            aria-current="page"
+          >
+            Dashboard
+          </a>
+        </li>
+        <li class="relative">
+          <a
+            routerLink="/events"
+            routerLinkActive="active"
+            class="rounded-md px-2.5 font-medium py-3 text-[13px] hover:underline-offset-1 hover:text-black cursor-pointer"
+          >
+            Events
+          </a>
+        </li>
+        <li class="relative">
+          <a
+            routerLink="/programs"
+            routerLinkActive="active"
+            class="rounded-md px-2.5 font-medium py-3 text-[13px] hover:underline-offset-1 hover:text-black cursor-pointer"
+          >
+            Programs
+          </a>
+        </li>
+        <li class="relative">
+          <a
+            routerLink="/referral"
+            routerLinkActive="active"
+            class="rounded-md px-2.5 font-medium py-3 text-[13px] hover:underline-offset-1 hover:text-black cursor-pointer"
+          >
+            Referral
+          </a>
+        </li>
+        <li class="relative">
+          <a
+            routerLink="/referral-codes"
+            routerLinkActive="active"
+            class="rounded-md px-2.5 font-medium py-3 text-[13px] hover:underline-offset-1 hover:text-black cursor-pointer"
+          >
+            Referral Codes
+          </a>
+        </li>
+        <li class="relative">
+          <a
+            routerLink="/rewards"
+            routerLinkActive="active"
+            class="rounded-md px-2.5 font-medium py-3 text-[13px] hover:underline-offset-1 hover:text-black cursor-pointer"
+          >
+            Rewards
+          </a>
+        </li>
+      </ul>
+    </div>
+</div>

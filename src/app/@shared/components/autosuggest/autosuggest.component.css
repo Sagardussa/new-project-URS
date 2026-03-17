@@ -1,0 +1,10 @@
+.autosuggest-container {
+  position: relative;
+}
+
+mark {
+  background-color: #bfdbfe;
+  padding: 0;
+  font-weight: 600;
+}
+

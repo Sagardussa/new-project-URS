@@ -1,0 +1,112 @@
+<a
+  class="inline-block group rounded-[5px] text-center text-sm font-medium leading-[1.7] me-4 sm:me-4 cursor-pointer text-customBlack"
+>
+<div
+  class="flex justify-between items-center  px-4 py-2.5 md:py-2 border border-[#192537] rounded-md transition-all duration-200 group group-hover:bg-DarkGradientBlue"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="14.4"
+    height="13.4"
+    viewBox="0 0 14.4 13.4"
+    class="transition-colors duration-200 stroke-current text-[#192537] group-hover:text-white"
+  >
+    <g
+      id="Group_2157"
+      data-name="Group 2157"
+      transform="translate(0.7 12.7) rotate(-90)"
+    >
+      <path
+        id="Icon_feather-download"
+        data-name="Icon feather-download"
+        d="M0,4.884,3.488,8.372,6.977,4.884M3.488,8.372V0"
+        transform="translate(0 10.002) rotate(-90)"
+        fill="none"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="1.4"
+      />
+      <line
+        id="Line_663"
+        data-name="Line 663"
+        x2="13"
+        transform="translate(12 13) rotate(-90)"
+        fill="none"
+        stroke-linecap="round"
+        stroke-width="1.4"
+      />
+    </g>
+  </svg>
+
+  <span
+    class="ms-2 text-xs text-[#192537] group-hover:text-white hidden lg:inline-block"
+    (click)="openDialog()"
+  >
+    Bulk Upload
+  </span>
+</div>
+
+</a>
+<app-modal *ngIf="isDialogOpen">
+  <div class="w-full min-w-auto sm:min-w-[600px] lg:min-w-[760px] max-h-full">
+    <div class="relative bg-white rounded-lg border shadow-2xl">
+      <form [formGroup]="uploadCsvForm" (ngSubmit)="onSubmit()">
+      <div
+        class="text-[#192537] text-[18px] font-semibold relative top-10 left-20 after:absolute after:-bottom-1 after:left-0 after:h-[2px] after:w-[40px] after:bg-[#FF5757] font-poppins after:rounded-s after:rounded-e">
+        Upload Sheet
+      </div>
+      <div class="text-center mt-20">
+        <div
+          class="text-center content-center font-poppins bg-[#16294408] w-[230px] h-[200px] mx-auto border-2 border-dashed rounded-[6px] border-[#818C9E99]">
+          <div>
+            <img
+              src="assets/vendor/cloud-computing.svg"
+              alt
+              class="mx-auto size-20" (click)="fileInput.click()"/>
+          </div>
+          <div class="pt-4 text-[12px] font-semibold text-[#192537]">
+            Drag and Drop
+          </div>
+          <div class="text-[12px] font-semibold text-[#192537]">
+            <input
+            #fileInput
+            type="file"
+            accept=".csv,.xlsx"
+            class="hidden"
+            (change)="onCsvFileSelected($event)"
+            formControlName="csvFile"
+            />
+           
+            or <span class="text-[#1E78D2]">Click to Upload</span>
+          </div>
+        </div>
+        <div class="text-[rgb(14,23,38)] text-[12px] font-medium pt-8">
+          File Requirement
+        </div>
+        <div
+          class="flex justify-center gap-2 text-base font-semibold bg-[#EAF4FF] w-[300px] rounded-[5px] mx-auto py-2 mt-4">
+          <div>
+            <img src="assets/vendor/microsoft-excel-icon.svg" alt />
+          </div>
+          <div class="text-[#192537] text-[13px] font-medium">
+            Download Template
+            <span class="text-[#1E78D2] underline">Download Here</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="flex justify-end py-10 pr-10">
+        <a
+          (click)="closeDialog()"
+          class="inline-flex rounded-[5px] text-center text-sm font-semibold leading-[1.7] me-3 sm:me-5 cursor-pointer text-[#172740] underline py-2 px-6">Cancel</a>
+        <button
+          type="submit"
+          class="inline-flex w-auto rounded-[5px] bg-gradient-to-r from-[#102F5D] to-[#192537] text-center text-sm text-[#FFFFFF] font-semibold py-2 px-6 leading-[1.7] cursor-pointer">
+          Upload
+        </button>
+      </div>
+    </form>
+    </div>
+    
+  </div>
+</app-modal>

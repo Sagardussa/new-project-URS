@@ -1,0 +1,65 @@
+<div class="mx-auto px-4 sm:px-6 lg:px-8 pt-14 lg:mt-16">
+  <div
+    class="flex flex-col md:flex-row justify-between items-center md:pt-3 pt-3"
+  >
+    <div class="flex items-center">
+      <app-page-heading title="Programs Management"></app-page-heading>
+    </div>
+    <div class="flex flex-row md:flex-row items-center justify-between">
+      <div class="flex flex-row md:flex-row gap-3">
+        <div
+          class="flex flex-row md:flex-row items-center space-y-2 md:space-y-0 space-x-0 md:w-auto max-md:justify-center"
+        >
+          <div class="flex gap-4">
+            <a
+              routerLink="create"
+              class="inline-block group rounded-[20px] text-center text-sm font-medium leading-[1.7] me-4 sm:me-4 cursor-pointer text-customBlack"
+            >
+              <div
+                class="flex justify-between items-center px-4 py-2 border border-[#192537] rounded-2xl bg-DarkGradientBlue"
+              >
+                <img
+                  loading="lazy"
+                  class="inline w-3 me-1 max-md:size-[10px] filter brightness-0 invert"
+                  src="assets/plus.svg"
+                  alt="plus"
+                />
+                <span
+                  class="ms-1 text-xs xlg:text-sm text-white hidden lg:inline-block"
+                >
+                  Add
+                </span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mx-auto sm:px-6 lg:px-8 sm:mt-1 px-4 pb-8">
+  <div class="py-4">
+    @if (loading) {
+      <p class="text-[#192537CC] text-center">Loading programs…</p>
+    } @else if (error) {
+      <p class="text-red-600 font-medium text-center">{{ error }}</p>
+    } @else {
+      <dynamic-table
+        [rowData]="rowData"
+        [totalRows]="totalRows"
+        [pageSize]="pageSize"
+        [currentPage]="currentPage"
+        [colDefs]="columnDefs"
+        [showPagination]="true"
+        [showActionColumn]="true"
+        [showView]="true"
+        (paginationChanged)="onPaginationChanged($event)"
+        (viewClicked)="onView($event)"
+        (editClicked)="onEdit($event)"
+        (deleteClicked)="onDeleteClicked($event)"
+      >
+      </dynamic-table>
+    }
+  </div>
+</div>

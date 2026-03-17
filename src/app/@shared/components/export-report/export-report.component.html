@@ -1,0 +1,68 @@
+
+<div class="relative">
+    <button
+  (click)="toggleDropdown()"
+  class="flex justify-between items-center px-2 py-2 border border-[#192537] rounded-md m-0 leading-[0] transition-all duration-200 "
+>
+<svg
+xmlns="http://www.w3.org/2000/svg"
+width="15"
+height="16"
+viewBox="0 0 14.398 13.4"
+class="transition-colors duration-200 stroke-current text-[#192537] group-hover:text-white mr-2"
+>
+<g
+  id="Export_"
+  data-name="Export"
+  transform="translate(13.699 0.7) rotate(90)"
+>
+  <path
+    id="Icon_feather-download"
+    data-name="Icon feather-download"
+    d="M0,4.884,3.488,8.372,6.977,4.884M3.488,8.372V0"
+    transform="translate(0 10.002) rotate(-90)"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    stroke-width="1.4"
+  />
+  <line
+    id="Line_663"
+    data-name="Line 663"
+    x2="13"
+    transform="translate(12 13) rotate(-90)"
+    stroke-linecap="round"
+    stroke-width="1.4"
+  />
+</g>
+</svg>
+  <span class="text-[#192537] text-xs font-medium hidden lg:inline-block ">Export</span>
+  <span class="ml-1 mt-1 transition-colors duration-200 text-[#192537] ">
+    <i
+      [ngClass]="dropdownOpen ? 'bi bi-chevron-up' : 'bi bi-chevron-down'"
+     
+    ></i>
+  </span>
+</button>
+
+    <ul
+      *ngIf="dropdownOpen"
+      class="absolute right-0 mt-2 w-52 z-20 font-medium bg-white text-[#192537] rounded-md shadow-xl shadow-[2px 5px 7px 2px #808080b0]"
+    >
+      <li>
+        <a
+         
+          class="block px-4 py-2 text-xs text-[#192537] cursor-pointer"
+          >
+          Event Level Report</a
+        >
+      </li>
+      <li>
+        <a
+         
+          class="block px-4 py-2 text-xs text-[#192537] cursor-pointer"
+          >
+          Bidding Comparison Report</a
+        >
+      </li>
+    </ul>
+  </div>

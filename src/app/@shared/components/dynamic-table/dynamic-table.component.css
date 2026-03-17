@@ -1,0 +1,430 @@
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-quartz.css';
+
+/* ========================================
+   CELL FADE-IN AND TRANSITION ANIMATIONS
+======================================== */
+
+/* Main table container with initial fade-in */
+.ag-grid-container {
+  width: 100%;
+  overflow-x: auto;
+  animation: tableFadeIn 0.5s ease-in-out;
+}
+
+/* Table fade-in animation */
+@keyframes tableFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Cell fade-in animation with staggered delay */
+.ag-cell {
+  animation: cellFadeIn 0.4s ease-out;
+  animation-fill-mode: both;
+  transition: all 0.2s ease-in-out;
+}
+
+@keyframes cellFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Staggered animation delays for cells */
+.ag-row:nth-child(1) .ag-cell { animation-delay: 0.05s; }
+.ag-row:nth-child(2) .ag-cell { animation-delay: 0.1s; }
+.ag-row:nth-child(3) .ag-cell { animation-delay: 0.15s; }
+.ag-row:nth-child(4) .ag-cell { animation-delay: 0.2s; }
+.ag-row:nth-child(5) .ag-cell { animation-delay: 0.25s; }
+.ag-row:nth-child(6) .ag-cell { animation-delay: 0.3s; }
+.ag-row:nth-child(7) .ag-cell { animation-delay: 0.35s; }
+.ag-row:nth-child(8) .ag-cell { animation-delay: 0.4s; }
+.ag-row:nth-child(9) .ag-cell { animation-delay: 0.45s; }
+.ag-row:nth-child(10) .ag-cell { animation-delay: 0.5s; }
+
+/* Row hover effects */
+.ag-row {
+  transition: all 0.2s ease-in-out;
+  overflow: visible !important;
+  z-index: 1 !important;
+}
+
+.ag-row:hover {
+  background-color: rgba(25, 37, 55, 0.03) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 2 !important;
+}
+
+/* Cell hover effects */
+.ag-cell:hover {
+  background-color: rgba(25, 37, 55, 0.05) !important;
+  transform: scale(1.01);
+}
+
+/* Header animations */
+.ag-header {
+  background-color: #EEEEEE;
+  border-radius: 5px;
+  animation: headerSlideDown 0.3s ease-out;
+}
+
+@keyframes headerSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.ag-header-cell.custom-header-cell {
+  font-weight: 600;       
+  font-size: 0.875rem;     
+  text-align: left;        
+  padding: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.ag-header-cell:hover {
+  background-color: rgba(25, 37, 55, 0.08) !important;
+  transform: translateY(-1px);
+}
+
+/* Enhanced cell styling with transitions */
+.ag-cell.custom-row-cell {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: rgba(25, 37, 55, 0.8);
+  padding: 16px !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.ag-cell, .ag-full-width-row .ag-cell-wrapper.ag-row-group{
+  padding: 16px !important;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Loading shimmer effect for empty cells */
+.ag-cell:empty::before {
+  content: '';
+  display: block;
+  width: 70%;
+  height: 12px;
+  background: linear-gradient(90deg, 
+    rgba(225, 225, 225, 0.3) 25%, 
+    rgba(225, 225, 225, 0.8) 50%, 
+    rgba(225, 225, 225, 0.3) 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+/* ========================================
+   PAGINATION TRANSITIONS
+======================================== */
+
+.custom-pagination {
+  padding: 12px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+  background-color: #f8f8f8;
+  border-top: 1px solid #ddd;
+  animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.pagination-controls {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+
+.pagination-info {
+  display: flex;
+  gap: 16px;
+}
+
+.pagination-btn {
+  color: #000000;
+  font-size: 10px;
+  background-color: transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+.pagination-btn:hover:not(:disabled) {
+  background-color: rgba(25, 37, 55, 0.1);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.pagination-btn:active {
+  transform: translateY(0);
+  transition-duration: 0.1s;
+}
+
+.pagination-btn:disabled {
+  background-color: transparent;
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.page-size-select {
+  padding: 6px 20px 6px 6px;
+  border: 1px solid #140101;
+  border-radius: 4px;
+  transition: all 0.2s ease-in-out;
+}
+
+.page-size-select:hover {
+  border-color: #192537;
+  box-shadow: 0 0 0 2px rgba(25, 37, 55, 0.1);
+}
+
+.page-size-select:focus {
+  outline: none;
+  border-color: #192537;
+  box-shadow: 0 0 0 3px rgba(25, 37, 55, 0.15);
+}
+
+/* ========================================
+   DATA UPDATE ANIMATIONS
+======================================== */
+
+/* Animation for when data is being updated */
+.ag-grid-data-updating .ag-cell {
+  animation: dataUpdate 0.6s ease-in-out;
+}
+
+@keyframes dataUpdate {
+  0% { opacity: 1; }
+  50% { opacity: 0.5; transform: scale(0.98); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+/* New row highlight animation */
+.ag-row-animation {
+  animation: newRowHighlight 1s ease-out;
+}
+
+@keyframes newRowHighlight {
+  0% {
+    background-color: rgba(46, 204, 113, 0.3);
+    transform: scale(1.02);
+  }
+  100% {
+    background-color: transparent;
+    transform: scale(1);
+  }
+}
+
+/* ========================================
+   UTILITY STYLES
+======================================== */
+
+select, option {
+  font-size: 12px !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.bi::before, [class^=bi-]::before, [class*=" bi-"]::before {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  transition: all 0.2s ease-in-out;
+}
+
+/* Enhanced tooltip with fade effect */
+.tooltip {
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: fit-content;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 5px;
+  border-radius: 6px;
+  position: absolute;
+  z-index: 1;
+  top: -20px;
+  right: 0px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+  transform: translateY(-5px);
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================
+   SCROLLBAR STYLING WITH TRANSITIONS
+======================================== */
+
+.ag-theme-quartz {
+  min-width: 100%;
+}
+
+.ag-grid-container::-webkit-scrollbar {
+  height: 8px;
+  transition: all 0.2s ease-in-out;
+}
+
+.ag-grid-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.ag-grid-container::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+  transition: background 0.2s ease-in-out;
+}
+
+.ag-grid-container::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* ========================================
+   RESPONSIVE ANIMATIONS
+======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Disable animations for users who prefer reduced motion */
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+.ag-grid-responsive {
+  width: 100%;
+  height: 500px;
+  min-width: 1200px;
+}
+
+/* Fix cursor pointer for action columns - only show pointer on icons, not entire cell */
+.ag-cell[col-id="action"],
+.ag-cell[col-id="Action"],
+.ag-cell[col-id="Actions"] {
+  cursor: default !important;
+  overflow: visible !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.ag-cell[col-id="action"] > div,
+.ag-cell[col-id="Action"] > div,
+.ag-cell[col-id="Actions"] > div {
+  cursor: default !important;
+  overflow: visible !important;
+  height: 100% !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Ensure icons and clickable elements within action cells show pointer cursor */
+.ag-cell[col-id="action"] a,
+.ag-cell[col-id="action"] .cursor-pointer,
+.ag-cell[col-id="action"] button,
+.ag-cell[col-id="Action"] a,
+.ag-cell[col-id="Action"] .cursor-pointer,
+.ag-cell[col-id="Action"] button,
+.ag-cell[col-id="Actions"] a,
+.ag-cell[col-id="Actions"] .cursor-pointer,
+.ag-cell[col-id="Actions"] button {
+  cursor: pointer !important;
+}
+
+/* Dropdown menu styling */
+.action-dropdown-menu {
+  z-index: 9999 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Ensure status cells are vertically centered */
+.ag-cell[col-id="Status"],
+.ag-cell[col-id="status"] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.ag-cell[col-id="Status"] > div,
+.ag-cell[col-id="status"] > div {
+  height: 100% !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Ensure Resume column cells are vertically centered */
+.ag-cell[col-id="Resume"],
+.ag-cell[col-id="resume"] {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.ag-cell[col-id="Resume"] > div,
+.ag-cell[col-id="resume"] > div {
+  height: 100% !important;
+  width: 100% !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+/* Higher z-index for rows with open dropdowns */
+.ag-row:has(.action-dropdown-menu[style*="display: block"]) {
+  z-index: 999 !important;
+}

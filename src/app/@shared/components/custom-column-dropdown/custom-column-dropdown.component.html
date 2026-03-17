@@ -1,0 +1,56 @@
+<div class="relative w-full md:w-auto flex items-center space-x-2">
+  <div class="">
+    <button
+      (click)="toggleDropdown()"
+      class="flex items-center font-semibold space-x-2 px-2 py-1 md:px-4 md:py-1 text-[#192537] border border-[#192537] rounded-md w-full md:w-auto"
+    >
+      <i class="bi bi-layout-three-columns pe-0 md:pe-2"></i>
+      <span class="hidden lg:inline-block text-xs xlg:text-sm"
+        >Dropdown</span
+      >
+    </button>
+    <div
+      *ngIf="dropdownOpen"
+      class="absolute left-0 mt-1 w-48 bg-white border rounded-lg shadow-lg z-10"
+    >
+      <div class="px-4 pt-4 space-y-2">
+        <div
+          *ngFor="let option of options | filter : searchTerm"
+          class="flex items-center space-x-2 text-sm text-gray-700"
+        >
+          <input
+            type="checkbox"
+            [(ngModel)]="option.selected"
+            (ngModelChange)="onOptionChange($event, option)"
+            [attr.id]="option.field"
+            class="w-4 h-4  text-blue-600 border-gray-300 rounded shadow-sm"
+          />
+          <label
+            [attr.for]="option.field"
+            class="font-medium text-xs mr-2 cursor-pointer"
+            >{{ option.headerName }}</label
+          >
+        </div>
+      </div>
+      <div class="flex items-center text-xs font-medium justify-between p-4">
+        <button
+          (click)="cancel()"
+          class="px-4 py-2 me-1 text-gray-600 border rounded hover:bg-gray-100"
+        >
+          Cancel
+        </button>
+        <button
+          (click)="apply()"
+          class="px-4 py-2 text-white bg-[#102F5D] rounded"
+        >
+        Apply
+        </button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isRefreshButton">
+    <button (click)="refreshCustomColumn()" class="px-2 py-1  text-[#192537] border border-[#192537] rounded-md w-full md:w-auto">
+      <i class="bi bi-arrow-counterclockwise font-extrabold"></i>
+    </button>
+  </div>
+</div>

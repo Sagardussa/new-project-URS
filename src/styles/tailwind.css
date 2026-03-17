@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+ html, body {
+  @apply overflow-x-hidden;
+}
+
+@layer base {
+  h1 {
+    @apply text-5xl font-bold;
+  }
+  h2 {
+    @apply text-4xl font-semibold;
+  }
+  h3 {
+    @apply text-3xl font-medium;
+  }
+  h4 {
+    @apply text-2xl font-medium;
+  }
+  h5 {
+    @apply text-xl font-medium;
+  }
+  h6 {
+    @apply text-lg font-medium;
+  }
+}
+
+/* **************************** accordion Css ********************* */
+.acc-header {
+  @apply flex justify-between items-center px-5 py-3  cursor-pointer  rounded-md border-y border-[#7070703D] focus:outline-none focus:ring-2 ;
+}
+
+.acc-header svg {
+  @apply duration-300 transform; /* Transform added for smooth rotation */
+}
+
+.acc-header p {
+  @apply font-semibold;
+}
+
+.acc-body {
+  @apply bg-stone-100 px-5 text-sm overflow-hidden duration-300 ease-linear transform scale-y-0 origin-top opacity-0; /* Hidden by default */
+}
+
+.acc-item.close .acc-body {
+  @apply max-h-0 scale-y-0 opacity-0; /* Smoothly collapse the content */
+}
+
+.acc-item.open .acc-header svg {
+  @apply rotate-180; /* Rotates arrow icon when open */
+}
+
+.acc-item.open .acc-body {
+  @apply max-h-screen scale-y-100 py-3 opacity-100; /* Smoothly expand with full height */
+}
+
+.ng-dropdown-panel {
+  @apply absolute right-0 mt-2;
+}

@@ -1,0 +1,92 @@
+<section class="bg-[#F8F8F8] p-2 pt-20 lg:pt-[120px] lg:p-8 pb-8 w-screen">
+  <div class="flex lg:flex-row gap-2 lg:gap-4 flex-col">
+    <div class="w-full">
+      <div class="bg-[#FFFFFF] max-md:mt-0 lg:mt-4 border-2 border-solid border-[#FFFFFF] shadow-xl rounded-[10px] lg:pb-6">
+        <div class="flex flex-row justify-between p-3 lg:p-4 space-y-4">
+          <button
+            type="button"
+            (click)="goBack()"
+            class="flex items-center gap-2 text-[#192537] text-[14px] lg:text-[15px] font-bold cursor-pointer bg-transparent border-none p-0"
+          >
+            <img loading="lazy" src="assets/leftarrow.svg" alt="svg" class="w-4 h-4" />
+            <span class="relative after:absolute after:h-[2px] lg:after:w-[36px] after:w-[28px] after:-bottom-1 after:bg-[#FF5757] after:left-0 after:rounded-s-2xl after:rounded-e-2xl cursor-pointer">
+              View Event
+            </span>
+          </button>
+        </div>
+        <div class="p-4 lg:p-6">
+          @if (loading) {
+            <p class="text-[#192537CC] py-8">Loading event…</p>
+          } @else if (error || !event) {
+            <p class="text-[13px] text-red-600 font-medium">{{ error || 'Event not found.' }}</p>
+          } @else {
+            <div class="mb-6">
+              <div class="flex items-center gap-2 mb-2">
+                <h1 class="text-2xl lg:text-3xl font-bold text-[#192537]">{{ event.displayName }}</h1>
+                @if (event.id) {
+                  <span class="text-sm font-mono text-gray-500 bg-gray-100 px-2 py-0.5 rounded">{{ event.id }}</span>
+                }
+              </div>
+              <p class="text-gray-600 text-sm lg:text-base">{{ event.eventName }}</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+              <div class="bg-white rounded-lg border border-gray-200 p-4 lg:p-5 shadow-sm">
+                <h3 class="text-base lg:text-lg font-semibold text-[#192537] mb-4 flex items-center gap-2">
+                  <i class="bi bi-info-circle text-blue-600"></i> Basic Information
+                </h3>
+                <div class="space-y-3">
+                  <div class="flex items-start gap-3 py-2 border-b border-gray-100">
+                    <i class="bi bi-tag text-gray-400 text-sm mt-0.5"></i>
+                    <div class="flex-1">
+                      <div class="text-xs text-gray-500 font-medium">Display Name</div>
+                      <div class="text-sm text-[#192537] font-semibold mt-0.5">{{ event.displayName }}</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3 py-2 border-b border-gray-100">
+                    <i class="bi bi-code-slash text-gray-400 text-sm mt-0.5"></i>
+                    <div class="flex-1">
+                      <div class="text-xs text-gray-500 font-medium">Event Name</div>
+                      <div class="text-sm text-[#192537] font-mono font-semibold mt-0.5">{{ event.eventName }}</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3 py-2 border-b border-gray-100">
+                    <i class="bi bi-folder text-gray-400 text-sm mt-0.5"></i>
+                    <div class="flex-1">
+                      <div class="text-xs text-gray-500 font-medium">Category</div>
+                      <div class="text-sm text-[#192537] font-semibold mt-0.5">{{ event.category }}</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3 py-2">
+                    <i class="bi bi-check2-square text-gray-400 text-sm mt-0.5"></i>
+                    <div class="flex-1">
+                      <div class="text-xs text-gray-500 font-medium">Allow Duplicates</div>
+                      <div class="text-sm text-[#192537] font-semibold mt-0.5">{{ event.allowDuplicates ? 'Yes' : 'No' }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="space-y-4">
+                <div class="bg-white rounded-lg border border-gray-200 p-4 lg:p-5 shadow-sm">
+                  <h3 class="text-base lg:text-lg font-semibold text-[#192537] mb-4 flex items-center gap-2">
+                    <i class="bi bi-file-text text-purple-600"></i> Description
+                  </h3>
+                  <p class="text-[#192537E6] text-[13px] lg:text-[14px] leading-relaxed">{{ event.description || '—' }}</p>
+                </div>
+                <div class="bg-white rounded-lg border border-gray-200 p-4 lg:p-5 shadow-sm">
+                  <h3 class="text-base lg:text-lg font-semibold text-[#192537] mb-4 flex items-center gap-2">
+                    <i class="bi bi-braces text-amber-600"></i> Expected Metadata (JSON)
+                  </h3>
+                  <pre class="text-[13px] text-[#192537] font-mono bg-gray-50 p-3 rounded overflow-x-auto whitespace-pre-wrap">{{ expectedMetadataJson }}</pre>
+                </div>
+              </div>
+            </div>
+            <div class="flex flex-row justify-end items-center gap-3 mt-6 pt-4 border-t border-gray-200">
+              <button type="button" (click)="goBack()" class="text-[#192537] text-[12px] font-medium border border-solid border-[#192537] rounded-[5px] px-6 py-1.5">Back to list</button>
+              <a [routerLink]="['/events/edit', event.id]" class="text-[#FFFFFF] text-[12px] font-medium bg-gradient-to-r from-[#102F5D] to-[#192537] rounded-[5px] px-6 py-1.5 inline-block">Edit Event</a>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

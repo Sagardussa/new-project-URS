@@ -1,0 +1,211 @@
+/* ***************** status ************************ */
+.completed-2 {
+  background-color: #aafb6c33;
+  color: #71af04 !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 8px;
+  height: 30px !important;
+  width: 100px!important;  
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.approved {
+  background-color: #b8faca;
+  color: #199700 !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 8px;
+  height: 30px !important;
+  width: 100px!important;  
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.in-progress {
+  background-color: #fbf4b8;
+  color: #7b6e00 !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 8px;
+  height: 30px !important;
+  width: 100px!important;  
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.pending {
+  background-color: #ffe3b9;
+  color: #af6b04 !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 8px;
+  height: 30px !important;
+  width: 100px!important;  
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.rejected {
+  background-color: #fac3b8;
+  color: #e61d1d !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 8px;
+  height: 30px !important;
+  width: 100px!important;  
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.suspended{
+  background-color: #fac3b8;
+  color: #e61d1d !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 8px;
+  height: 30px !important;
+  width: 100px!important;  
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.warning{
+  background-color: #FBF4B8;
+  color: #7B6E00 !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 8px;
+  height: 30px !important;
+  width: 100px!important;  
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.completed {
+  background-color: #4da1c533;
+  color: #3485a8 !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 8px;
+  height: 30px !important;
+  width: 100px!important;  
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.open1 {
+  background-color: #aafb6c33;
+  color: #71af04 !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 8px;
+  height: 30px !important;
+  width: 100px!important;  
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.overdue {
+  background-color: #ff78002e;
+  color: #ff7800 !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 8px;
+  height: 30px !important;
+  width: 100px!important;  
+  line-height: 1.5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* **************** ag grid style **************** */
+.ag-header-cell-label {
+  justify-content: center !important; /* Align text in the center */
+}
+.ag-header-cell-text {
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  color: #192537 !important;
+}
+.ag-cell-value {
+  justify-content: center !important;
+  align-items: center !important;
+  font-weight: 500 !important;
+}
+
+.ag-root-wrapper {
+  border-radius: 5px !important;
+  border: none !important;
+}
+.ag-header-viewport {
+  background-color: #eeeeee;
+  color: #192537;
+}
+
+.ag-cell {
+  justify-content: center !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+}
+
+
+/* responsive */
+
+@media (min-width: 1280px) {
+  .ag-row {
+    width: 100% !important;
+  }
+}
+@media (min-width: 1536px) {
+  .ag-row {
+    width: 100% !important;
+  }
+}
+@media only screen and (min-width: 1824px) {
+  .ag-row {
+    width: 100vw !important;
+  }
+}
+@media (max-width: 440px) {
+  .ag-paging-page-size {
+    display: none !important;
+  }
+  .ag-paging-row-summary-panel {
+    display: none !important;
+  } 
+}
+
+/* Vendor edit page  - prime-ng*/
+.p-checkbox-checked .p-checkbox-box {
+  border-color: #E4EDFF !important;
+  background: #E4EDFF !important;
+}
+.p-checkbox-checked .p-checkbox-icon {
+  color:#3760B0 !important;
+}
+.p-chip {
+  background-color: #E4EDFF !important;
+  color: #3760B0 !important;
+}

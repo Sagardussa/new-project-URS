@@ -1,0 +1,74 @@
+<div class="ag-grid-container">
+  <ag-grid-angular
+  class="ag-theme-quartz mb-5 ag-grid-responsive"
+  [scrollbarWidth]="8"
+  [rowHeight]="60"
+  [columnDefs]="colDefs"
+  [rowData]="rowData"
+  [defaultColDef]="defaultColDef"
+  [gridOptions]="gridOptions"
+  style="width: 100%; height: 500px; min-width: 1200px;"
+  [pagination]="false"
+  (gridReady)="onGridReady($event)"
+  (rowClicked)="onRowClicked($event)"
+  [rowSelection]="_rowSelectionOptions"
+  (selectionChanged)="onSelectionChanged($event)"
+  (sortChanged)="onSortChanged($event)"
+  [ngClass]="{ 'clickable-rows': enableRowClick }"
+>
+</ag-grid-angular>
+
+  <div *ngIf="showPagination" class="custom-pagination">
+    <div class="pagination-info text-sm font-medium text-[#192537B3]">
+      <span>Pages {{ totalRows > 0 ? current1Page : 0 }} of {{ totalRows > 0 ? totalPages : 0 }}</span>
+      <span> Total records: {{ totalRows }}</span>
+    </div>
+
+    <div class="pagination-controls">
+      <button
+    
+        (click)="goToFirstPage()"
+        [disabled]="totalRows === 0 || current1Page === 1"
+        class="pagination-btn tooltip"
+      >
+        <i class="bi bi-chevron-bar-left"></i>
+        <span *ngIf="totalRows>0" class="tooltiptext">First</span>
+      </button>
+    
+      <!--  -->
+      <button
+        (click)="previousPage()"
+        [disabled]="totalRows === 0 || current1Page === 1"
+        class="pagination-btn tooltip"
+      >
+        <i class="bi bi-chevron-left"></i>
+        <span *ngIf="totalRows>0" class="tooltiptext">Previous</span>
+      </button>
+      <select *ngIf="totalRows>0" class="input-style-main"
+        [(ngModel)]="perPage"
+        (change)="onPageSizeChange()"
+      >
+      <option *ngFor="let size of paginationPageSizeSelector" [value]="size">
+          {{ size }} Per Page
+        </option>
+      </select>
+      <button
+        (click)="nextPage()"
+        [disabled]="totalRows === 0 || current1Page >= totalPages"
+        class="pagination-btn tooltip"
+      >
+        <i class="bi bi-chevron-right"></i>
+        <span *ngIf="totalRows>0" class="tooltiptext">Next</span>
+      </button>
+      <button
+        (click)="goToLastPage()"
+        [disabled]="totalRows === 0 || current1Page >= totalPages"
+        class="pagination-btn tooltip"
+      >
+        <i class="bi bi-chevron-bar-right"></i>
+        <span *ngIf="totalRows>0" class="tooltiptext">Last</span>
+      </button>
+    </div>
+  </div>
+
+</div>

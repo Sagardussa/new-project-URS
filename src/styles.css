@@ -1,0 +1,437 @@
+/* You can add global styles to this file, and also import other style files */
+/* Poppins & Material Icons are loaded via <link> in index.html to avoid build-time fetch (e.g. in CI/Jenkins) */
+
+a.active {
+  font-weight: 600;
+  color: #192537;
+}
+a.active::after {
+  content: "";
+  border-bottom: 2px solid #ff5757;
+  border-radius: 15px;
+  position: absolute;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  top: 22px;
+  left: 10px;
+}
+button.active {
+  font-weight: 600;
+  color: #192537;
+}
+
+button.active::after {
+  content: "";
+  border-bottom: 2px solid #ff5757;
+  border-radius: 15px;
+  position: absolute;
+  width: 40px;
+  display: block;
+  top: 22px;
+  left: 10px;
+}
+
+/* Ensure dropdown links don't inherit the active styles */
+ul.navbar__dropdown a.active {
+  color: #192537 !important;
+  font-weight: 600 !important;
+  border: none !important;
+}
+
+
+.notifications-section .tab.active {
+  font-size: 14px !important;
+}
+.notifications-section .tab.active:after {
+  width: auto;
+  border-bottom: 1.5px solid #192537;
+  top: 27px !important;
+}
+
+.cdk-stepper .step-active .step-content {
+  display: block;
+}
+
+.cdk-stepper .step-header {
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+.scale-90 {
+  transform: scale(0.9);
+}
+
+.scale-100 {
+  transform: scale(1);
+}
+
+.box {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+.box.selected {
+  border: 1.5px solid #13518f;
+  background-color: transparent;
+  font-weight: 600;
+  color: #13518f;
+}
+.box.selected svg path {
+  fill: #13518f;
+}
+#confirmation_modal div > div:nth-child(2),
+#job_modal div > div:nth-child(2),
+#expense_modal div > div:nth-child(2) {
+  top: 0 !important;
+}
+.translate-x-20 {
+  --tw-translate-x: 4rem;
+}
+
+.active a {
+  font-weight: 600;
+  color: #192537;
+}
+.active a:after {
+  content: "";
+  position: absolute;
+  width: 50px;
+  height: 2px;
+  background: #ff5757;
+  display: block;
+  margin-left: 10px;
+}
+
+.reply-message {
+  border-radius: 8px;
+  padding: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+input {
+  background-color: #ffffff;
+}
+
+/* Chat Window Styling */
+.left_panel::-webkit-scrollbar,
+.middle_panel::-webkit-scrollbar,
+.right_panel::-webkit-scrollbar,
+.chat_message::-webkit-scrollbar {
+  width: 3px;
+}
+.left_panel::-webkit-scrollbar-thumb,
+.middle_panel::-webkit-scrollbar-thumb,
+.right_panel::-webkit-scrollbar-thumb,
+.chat_message::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+}
+.left_panel::-webkit-scrollbar-track,
+.middle_panel::-webkit-scrollbar-track,
+.right_panel::-webkit-scrollbar-track,
+.chat_message::-webkit-scrollbar-track {
+  background: transparent;
+}
+.left_panel,
+.right_panel {
+  width: 26%;
+}
+.left_panel,
+.middle_panel,
+.right_panel {
+  height: calc(100vh - 125px);
+}
+
+/* Media Queries for Responsive Design */
+@media screen and (max-width: 991px) {
+  .illustration {
+    top: 75%;
+    right: 52%;
+  }
+  .active a:after {
+    margin-left: 0;
+  }
+  .left_panel,
+  .middle_panel,
+  .right_panel {
+    width: 100%;
+  }
+  .dropdown_list_custom {
+    right: 16px;
+  }
+}
+@media screen and (max-width: 767px) {
+  .illustration {
+    top: 20%;
+    right: 5%;
+  }
+}
+@media screen and (max-width: 670px) {
+  .illustration {
+    top: 25%;
+  }
+}
+@media screen and (max-width: 550px) {
+  .form-group {
+    margin-bottom: 15px;
+  }
+}
+@media screen and (max-width: 480px) {
+  .illustration {
+    top: 22%;
+  }
+  .tab.active {
+    font-size: 16px !important;
+  }
+}
+@media screen and (max-width: 400px) {
+  .illustration {
+    top: 25%;
+  }
+  .logo {
+    width: 140px;
+  }
+}
+@media screen and (max-width: 380px) {
+  .illustration {
+    top: 32%;
+  }
+}
+@media screen and (max-width: 370px) {
+  .cdk-stepper {
+    padding: 0 !important;
+  }
+}
+
+
+.after-border-width-50::after {
+  content: "";
+  display: block;
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 20px !important;
+  height: 2px;
+  background-color: #ff5757;
+  bottom: -4px !important;
+}
+
+/* ****************************** sorting and icons css *************************** */
+
+.bi-chevron-expand::before {
+  content: "\f283";
+  font-weight: 700 !important;
+}
+
+.bi-chevron-left::before {
+  content: "\f284";
+  font-weight: 700 !important;
+  font-size: 18px;
+  margin-right: 5px;
+  color: #192537;
+}
+
+.bi-clock::before {
+  content: "\f293";
+  font-size: 18px;
+  font-weight: 600 !important;
+}
+
+.bi-pencil-square::before {
+  content: "\f4ca";
+  font-size: 18px;
+  font-weight: 400 !important;
+}
+
+.checkbox-lg {
+  transform: scale(1.5);
+  width: 12px;
+  height: 12px;
+}
+
+.heading-line:after {
+  content: "";
+  display: block;
+  left: 20px;
+  right: 0;
+  width: 30px !important;
+  height: 2px;
+  background-color: #ff5757;
+}
+
+/* *************************************** quote colection status Css **************** */
+
+.sent {
+  background-color: #e3edfb;
+  color: #2766ce !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 50px;
+  height: 25px;
+  width: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+}
+.seen {
+  background-color: #e3f1ea;
+  color: #2a7530 !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 50px;
+  height: 25px;
+  width: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+}
+.participated {
+  background-color: #31a4a73d;
+  color: #008d91 !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 50px;
+  height: 25px;
+  width: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+}
+.not-participated {
+  background-color: #f4e2e4;
+  color: #c0352d !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 50px;
+  height: 25px;
+  width: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+}
+.delivered {
+  background-color: #f5e9db;
+  color: #c66800 !important;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 5px 15px;
+  border-radius: 50px;
+  height: 25px;
+  width: 140px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+}
+.master_menu.active::after {
+  content: "";
+  border-bottom: 2px solid #ff5757;
+  border-radius: 15px;
+  position: absolute;
+  width: 32px;
+  display: flex;
+  align-items: center;
+  top: 22px;
+  left: 23px;
+}
+::-webkit-scrollbar {
+  width: 2px;
+  height: 5px;
+}
+::-webkit-scrollbar-thumb {
+  background-color: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+.scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: #888 #f1f1f1;
+}
+@-moz-document url-prefix() {
+  * {
+    scrollbar-color: my-color;
+    scrollbar-width: thin;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    color-scheme: light !important; 
+  }
+}
+
+ @media (prefers-color-scheme: dark) {
+  :root {
+    --multiselect-panel-bg: white;
+    --multiselect-item-text: black !important;
+    --p-form-field-background: white !important;
+    --p-multiselect-overlay-background: white !important;
+    --p-multiselect-option-focus-background:none !important;
+    --p-multiselect-option-color: black !important;
+    --p-text-hover-color:black !important;
+    --p-multiselect-color:black !important;
+    --p-chip-remove-icon-color: none !important;
+  }
+}
+
+
+/* Global Form Field Styles for Add/Edit Job Forms */
+/* Form Field Labels */
+.form-field-label {
+  color: rgb(14, 23, 38) !important;
+}
+
+/* Input/Textarea/Select Placeholders - Lighter Gray */
+::ng-deep input::placeholder,
+::ng-deep textarea::placeholder,
+::ng-deep select::placeholder {
+  font-size: 13px !important;
+  color: #9ca3af !important; /* Lighter gray for placeholders */
+}
+
+/* ng-select Placeholder - Lighter Gray */
+ng-select .ng-placeholder,
+::ng-deep .ng-select .ng-placeholder {
+  font-size: 13px !important;
+  color: #9ca3af !important; /* Lighter gray for placeholders */
+  font-weight: 500 !important;
+  opacity: 1 !important;
+}
+
+
+.p-multiselect-label .p-chip{
+  font-size: 12px !important;
+  font-weight: 600 !important;
+}
+.p-multiselect-label {
+  font-size: 0.75rem!important;
+  color:#b1b1b1 !important
+}
+.ag-cell {
+  padding: 8px 10px !important;
+  display: inline-block !important;
+  word-break: break-word;
+  text-align: center;
+}

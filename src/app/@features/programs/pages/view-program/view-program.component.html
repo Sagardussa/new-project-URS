@@ -1,0 +1,192 @@
+<section class="bg-[#F8F8F8] p-2 pt-20 lg:pt-[120px] lg:p-8 pb-8 w-screen">
+  <div class="flex lg:flex-row gap-2 lg:gap-4 flex-col">
+    <div class="w-full">
+      <div class="bg-[#FFFFFF] max-md:mt-0 lg:mt-4 border-2 border-solid border-[#FFFFFF] shadow-xl rounded-[10px] lg:pb-6">
+        <div class="flex flex-row justify-between p-3 lg:p-4 space-y-4">
+          <button
+            type="button"
+            (click)="goBack()"
+            class="flex items-center gap-2 text-[#192537] text-[14px] lg:text-[15px] font-bold cursor-pointer bg-transparent border-none p-0"
+          >
+            <img loading="lazy" src="assets/leftarrow.svg" alt="back" class="w-4 h-4" />
+            <span class="relative after:absolute after:h-[2px] lg:after:w-[36px] after:w-[28px] after:-bottom-1 after:bg-[#FF5757] after:left-0 after:rounded-s-2xl after:rounded-e-2xl cursor-pointer">
+              View Program
+            </span>
+          </button>
+        </div>
+        <div class="p-4 lg:p-6">
+          @if (loading) {
+            <p class="text-[#192537CC] py-8">Loading program…</p>
+          } @else if (error || !program) {
+            <p class="text-[13px] text-red-600 font-medium">{{ error || 'Program not found.' }}</p>
+          } @else {
+            <!-- Header -->
+            <div class="mb-6">
+              <div class="flex items-center gap-3 mb-2">
+                <h1 class="text-2xl lg:text-3xl font-bold text-[#192537]">{{ program.name }}</h1>
+                <span
+                  class="text-xs font-semibold px-2.5 py-0.5 rounded-full"
+                  [ngClass]="{
+                    'bg-green-100 text-green-700': program.status === 'ACTIVE',
+                    'bg-red-100 text-red-700': program.status === 'INACTIVE',
+                    'bg-amber-100 text-amber-700': program.status === 'DRAFT'
+                  }"
+                >
+                  {{ program.status }}
+                </span>
+              </div>
+              <p class="text-gray-500 text-sm font-mono">{{ program.slug }}</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 lg:gap-6">
+              <!-- Basic Information -->
+              <div class="bg-white rounded-lg border border-gray-200 p-4 lg:p-5 shadow-sm">
+                <h3 class="text-base lg:text-lg font-semibold text-[#192537] mb-4 flex items-center gap-2">
+                  <i class="bi bi-info-circle text-blue-600"></i> Basic Information
+                </h3>
+                <div class="space-y-3">
+                  <div class="flex items-start gap-3 py-2 border-b border-gray-100">
+                    <i class="bi bi-tag text-gray-400 text-sm mt-0.5"></i>
+                    <div class="flex-1">
+                      <div class="text-xs text-gray-500 font-medium">Name</div>
+                      <div class="text-sm text-[#192537] font-semibold mt-0.5">{{ program.name }}</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3 py-2 border-b border-gray-100">
+                    <i class="bi bi-link-45deg text-gray-400 text-sm mt-0.5"></i>
+                    <div class="flex-1">
+                      <div class="text-xs text-gray-500 font-medium">Slug</div>
+                      <div class="text-sm text-[#192537] font-semibold mt-0.5 font-mono">{{ program.slug }}</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3 py-2 border-b border-gray-100">
+                    <i class="bi bi-person text-gray-400 text-sm mt-0.5"></i>
+                    <div class="flex-1">
+                      <div class="text-xs text-gray-500 font-medium">Referrer Type</div>
+                      <div class="text-sm text-[#192537] font-semibold mt-0.5">{{ toSentenceCase(program.referrerType) }}</div>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-3 py-2">
+                    <i class="bi bi-person-plus text-gray-400 text-sm mt-0.5"></i>
+                    <div class="flex-1">
+                      <div class="text-xs text-gray-500 font-medium">Referee Type</div>
+                      <div class="text-sm text-[#192537] font-semibold mt-0.5">{{ toSentenceCase(program.refereeType) }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Description & Schedule -->
+              <div class="space-y-4">
+                <div class="bg-white rounded-lg border border-gray-200 p-4 lg:p-5 shadow-sm">
+                  <h3 class="text-base lg:text-lg font-semibold text-[#192537] mb-4 flex items-center gap-2">
+                    <i class="bi bi-file-text text-purple-600"></i> Description
+                  </h3>
+                  <p class="text-[#192537E6] text-[13px] lg:text-[14px] leading-relaxed">{{ program.description || '—' }}</p>
+                </div>
+                @if (program.startDate || program.endDate) {
+                <div class="bg-white rounded-lg border border-gray-200 p-4 lg:p-5 shadow-sm">
+                  <h3 class="text-base lg:text-lg font-semibold text-[#192537] mb-4 flex items-center gap-2">
+                    <i class="bi bi-calendar-event text-amber-600"></i> Schedule
+                  </h3>
+                  <div class="space-y-3">
+                    <div class="flex items-start gap-3 py-2 border-b border-gray-100">
+                      <i class="bi bi-calendar-plus text-gray-400 text-sm mt-0.5"></i>
+                      <div class="flex-1">
+                        <div class="text-xs text-gray-500 font-medium">Start Date</div>
+                        <div class="text-sm text-[#192537] font-semibold mt-0.5">{{ program.startDate || 'Not set' }}</div>
+                      </div>
+                    </div>
+                    <div class="flex items-start gap-3 py-2">
+                      <i class="bi bi-calendar-check text-gray-400 text-sm mt-0.5"></i>
+                      <div class="flex-1">
+                        <div class="text-xs text-gray-500 font-medium">End Date</div>
+                        <div class="text-sm text-[#192537] font-semibold mt-0.5">{{ program.endDate || 'Not set' }}</div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                }
+              </div>
+            </div>
+
+            <!-- Rules -->
+            @if (program.programRules) {
+              <div class="bg-white rounded-lg border border-gray-200 p-4 lg:p-5 shadow-sm mt-4">
+                <h3 class="text-base lg:text-lg font-semibold text-[#192537] mb-4 flex items-center gap-2">
+                  <i class="bi bi-shield-check text-indigo-600"></i> Rules
+                </h3>
+                <div class="grid grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div class="py-2">
+                    <div class="text-xs text-gray-500 font-medium">Attribution Window</div>
+                    <div class="text-sm text-[#192537] font-semibold mt-0.5">{{ program.programRules.attributionWindowDays }} days</div>
+                  </div>
+                  <div class="py-2">
+                    <div class="text-xs text-gray-500 font-medium">Max Referrals Per User</div>
+                    <div class="text-sm text-[#192537] font-semibold mt-0.5">{{ program.programRules.maxReferralsPerUser }}</div>
+                  </div>
+                  <div class="py-2">
+                    <div class="text-xs text-gray-500 font-medium">Cooldown Period</div>
+                    <div class="text-sm text-[#192537] font-semibold mt-0.5">{{ program.programRules.cooldownPeriodDays ?? 'None' }} {{ program.programRules.cooldownPeriodDays ? 'days' : '' }}</div>
+                  </div>
+                  <div class="py-2">
+                    <div class="text-xs text-gray-500 font-medium">Allow Self Referral</div>
+                    <div class="text-sm text-[#192537] font-semibold mt-0.5">{{ program.programRules.allowSelfReferral ? 'Yes' : 'No' }}</div>
+                  </div>
+                  <div class="py-2">
+                    <div class="text-xs text-gray-500 font-medium">Require Unique Email</div>
+                    <div class="text-sm text-[#192537] font-semibold mt-0.5">{{ program.programRules.requireUniqueEmail ? 'Yes' : 'No' }}</div>
+                  </div>
+                  <div class="py-2">
+                    <div class="text-xs text-gray-500 font-medium">Require Unique Device</div>
+                    <div class="text-sm text-[#192537] font-semibold mt-0.5">{{ program.programRules.requireUniqueDevice ? 'Yes' : 'No' }}</div>
+                  </div>
+                </div>
+              </div>
+            }
+
+            <!-- Rewards -->
+            @if (program.programRewards && program.programRewards.length > 0) {
+              <div class="bg-white rounded-lg border border-gray-200 p-4 lg:p-5 shadow-sm mt-4">
+                <h3 class="text-base lg:text-lg font-semibold text-[#192537] mb-4 flex items-center gap-2">
+                  <i class="bi bi-gift text-emerald-600"></i> Reward Stages
+                </h3>
+                <div class="overflow-x-auto">
+                  <table class="w-full text-sm">
+                    <thead>
+                      <tr class="border-b border-gray-200">
+                        <th class="text-left text-xs font-medium text-gray-500 py-2 px-3">Stage</th>
+                        <th class="text-left text-xs font-medium text-gray-500 py-2 px-3">Name</th>
+                        <th class="text-left text-xs font-medium text-gray-500 py-2 px-3">Recipient</th>
+                        <th class="text-left text-xs font-medium text-gray-500 py-2 px-3">Trigger Event</th>
+                        <th class="text-left text-xs font-medium text-gray-500 py-2 px-3">Type</th>
+                        <th class="text-right text-xs font-medium text-gray-500 py-2 px-3">Value</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      @for (reward of program.programRewards; track reward.stageNumber) {
+                        <tr class="border-b border-gray-100 last:border-0">
+                          <td class="py-2.5 px-3 font-semibold text-[#192537]">{{ reward.stageNumber }}</td>
+                          <td class="py-2.5 px-3 text-[#192537]">{{ reward.stageName }}</td>
+                          <td class="py-2.5 px-3 text-[#192537]">{{ toSentenceCase(reward.recipientType) }}</td>
+                          <td class="py-2.5 px-3 text-[#192537] font-mono text-xs">{{ reward.triggerEvent }}</td>
+                          <td class="py-2.5 px-3 text-[#192537]">{{ toSentenceCase(reward.rewardType) }}</td>
+                          <td class="py-2.5 px-3 text-right font-semibold text-[#192537]">{{ toSentenceCase(reward.rewardValue) }}</td>
+                        </tr>
+                      }
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            }
+
+            <!-- Actions -->
+            <div class="flex flex-row justify-end items-center gap-3 mt-6 pt-4 border-t border-gray-200">
+              <a [routerLink]="['/programs/edit', program.uuid]" class="text-[#FFFFFF] text-[12px] font-medium bg-gradient-to-r from-[#102F5D] to-[#192537] rounded-[5px] px-6 py-1.5 inline-block no-underline">Edit Program</a>
+            </div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

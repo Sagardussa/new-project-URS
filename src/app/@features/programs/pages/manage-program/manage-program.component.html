@@ -1,0 +1,135 @@
+<section class="bg-[#F8F8F8] mx-auto px-4 sm:px-6 lg:px-8 pt-14 lg:mt-16 min-h-screen pb-10">
+  <div class="flex lg:flex-row gap-3 lg:gap-6 flex-col">
+    <div class="w-full">
+      <div
+        class="bg-[#FFFFFF] max-md:mt-0 lg:mt-6 border-2 border-solid border-[#FFFFFF] shadow-xl rounded-[10px] lg:pb-10 lg:h-fit"
+      >
+        <div class="inline-block p-4 lg:p-6 space-y-4">
+          <button
+            type="button"
+            (click)="goBack()"
+            class="flex items-center gap-2 text-[#192537] text-[14px] lg:text-[15px] font-bold cursor-pointer bg-transparent border-none p-0"
+          >
+            <img loading="lazy" src="assets/leftarrow.svg" alt="back" class="w-4 h-4" />
+            <span
+              class="relative after:absolute after:h-[2px] lg:after:w-[36px] after:w-[28px] after:-bottom-1 after:bg-[#FF5757] after:left-0 after:rounded-s-2xl after:rounded-e-2xl"
+            >
+              {{ pageTitle }}
+            </span>
+          </button>
+        </div>
+
+        <app-loader *ngIf="loading"></app-loader>
+        <p *ngIf="loadError && !loading" class="mx-4 text-[13px] text-red-600 font-medium">
+          Program not found or failed to load.
+        </p>
+
+        <div *ngIf="!loading && !loadError" class="mx-4 pb-6">
+          <!-- Submit Error Display -->
+          <div *ngIf="submitError" class="mb-4 p-3 bg-red-50 border border-red-200 rounded-md">
+            <p class="text-red-600 text-sm font-medium">{{ submitError }}</p>
+            <div *ngIf="Object.keys(validationErrors).length > 0" class="mt-2">
+              <p class="text-red-500 text-xs mb-1">Validation errors:</p>
+              <ul class="text-red-500 text-xs space-y-1">
+                <li *ngFor="let error of validationErrors | keyvalue">
+                  <strong>{{ error.key }}:</strong> {{ error.value.join(', ') }}
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Basic Information (dynamic form) -->
+          <h3 class="text-sm font-semibold text-[#192537] mb-3 uppercase tracking-wide">Basic Information</h3>
+          <div class="mb-6">
+            <app-dynamic-form
+              #basicInfoForm
+              sectionSlug="basic-info"
+              [sectionFields]="basicInfoFields"
+              [initialData]="basicInfoData"
+              [columnsCount]="2"
+              [showButtons]="false"
+              (formValueChanged)="onBasicInfoValueChanged($event)"
+            />
+          </div>
+
+          <!-- Rules (dynamic form) -->
+          <h3 class="text-sm font-semibold text-[#192537] mb-3 uppercase tracking-wide">Rules</h3>
+          <div class="mb-6 bg-gray-50 p-4 rounded-lg border border-gray-200 rules-section">
+            <app-dynamic-form
+              #rulesForm
+              sectionSlug="rules"
+              [sectionFields]="rulesFields"
+              [initialData]="rulesData"
+              [columnsCount]="2"
+              [showButtons]="false"
+            />
+          </div>
+
+          <!-- Reward Stages (dynamic form per stage) -->
+          <div class="flex items-center justify-between mb-3">
+            <h3 class="text-sm font-semibold text-[#192537] uppercase tracking-wide">Reward Stages</h3>
+            <button
+              type="button"
+              (click)="addReward()"
+              class="text-xs font-medium text-white bg-gradient-to-r from-[#102F5D] to-[#192537] rounded-md px-3 py-1.5 cursor-pointer"
+            >
+              + Add Stage
+            </button>
+          </div>
+
+          <div [formGroup]="programForm">
+            <div formArrayName="rewards" class="space-y-3 mb-6">
+              <div
+                *ngFor="let row of rewards.controls; let i = index"
+                [formGroupName]="i"
+                class="bg-gray-50 p-4 rounded-lg border border-gray-200"
+              >
+                <div class="flex gap-3 items-start">
+                  <div class="flex-1 min-w-0">
+                    <app-dynamic-form
+                      [boundFormGroup]="rewards.at(i)"
+                      [sectionFields]="rewardStageFields"
+                      [columnsCount]="6"
+                      [optionsOverrides]="rewardStageOptionsOverrides"
+                      [showButtons]="false"
+                    />
+                  </div>
+                  <button
+                    type="button"
+                    (click)="removeReward(i)"
+                    class="text-red-500 hover:text-red-700 text-sm font-medium cursor-pointer bg-transparent border-none p-2 flex-shrink-0"
+                    title="Remove stage"
+                  >
+                    <img src="assets/trash.svg" alt="Remove" class="w-5 h-5" />
+                  </button>
+                </div>
+              </div>
+              <p *ngIf="rewards.length === 0" class="text-gray-400 text-sm italic py-2">
+                No reward stages added. Click &quot;Add Stage&quot; to configure rewards.
+              </p>
+            </div>
+          </div>
+
+          <!-- Actions -->
+          <div class="flex flex-row justify-end items-center gap-3 pt-4 border-t border-gray-200">
+            <button
+              type="button"
+              (click)="goBack()"
+              class="text-[#192537] text-[12px] font-medium border border-solid border-[#192537] rounded-[5px] px-6 py-1.5 cursor-pointer"
+            >
+              Cancel
+            </button>
+            <button
+              type="button"
+              (click)="onSubmit()"
+              [disabled]="submitting"
+              class="text-[#FFFFFF] text-[12px] font-medium bg-gradient-to-r from-[#102F5D] to-[#192537] rounded-[5px] px-6 py-1.5 cursor-pointer disabled:opacity-50"
+            >
+              {{ submitting ? 'Saving...' : submitButtonText }}
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

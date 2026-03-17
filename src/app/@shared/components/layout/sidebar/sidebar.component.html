@@ -1,0 +1,13 @@
+<div class="sidebar">
+  <ul class="shadow-md py-4 px-6 mb-5 rounded-lg bg-white h-fit lg:h-[calc(100vh-250px)] overflow-y-auto">
+    <li *ngFor="let item of menuItems" class="py-2">
+      <a
+        [routerLink]="item.routerLink"
+        routerLinkActive="font-semibold"
+        class="text-sm cursor-pointer text-[#192537]"
+      >
+        {{ item.label}}
+      </a>
+    </li>
+  </ul>
+</div>

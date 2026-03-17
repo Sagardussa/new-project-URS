@@ -1,0 +1,232 @@
+/* International Phone Input Component Styles */
+.intl-phone-input {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  min-width: 0;
+}
+
+.intl-phone-input > .flex {
+  min-width: 0;
+  width: 100%;
+}
+
+/* Dropdown customization */
+.country-dropdown {
+  max-height: 240px;
+  overflow-y: auto;
+}
+
+.country-item {
+  transition: background-color 0.15s ease-in-out;
+}
+
+.country-item:hover {
+  background-color: #f3f4f6;
+}
+
+/* Dropdown positioning */
+.dropdown-up {
+  animation: slideUp 0.15s ease-out;
+}
+
+.dropdown-down {
+  animation: slideDown 0.15s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.country-flag {
+  font-size: 1.125rem;
+  margin-right: 0.75rem;
+}
+
+/* Focus states */
+.phone-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.country-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Error states */
+.phone-input.error {
+  border-color: #ef4444;
+}
+
+.country-button.error {
+  border-color: #ef4444;
+}
+
+.error-message {
+  color: #ef4444;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+/* Search input in dropdown */
+.search-input {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 10;
+}
+
+/* Sticky search container */
+.sticky-search {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: white;
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e5e7eb;
+}
+
+/* Enhanced search input styling */
+.search-input-field {
+  transition: all 0.2s ease-in-out;
+}
+
+.search-input-field:focus {
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  border-color: #3b82f6;
+}
+
+/* Compact search styling */
+.compact-search {
+  padding: 8px 12px;
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+/* Dropdown scroll area */
+.countries-scroll-area {
+  max-height: 240px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f8fafc;
+}
+
+.countries-scroll-area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.countries-scroll-area::-webkit-scrollbar-track {
+  background: #f8fafc;
+}
+
+.countries-scroll-area::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.countries-scroll-area::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Preferred countries styling */
+.preferred-country {
+  position: relative;
+}
+
+.preferred-country::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 3px;
+  background-color: #3b82f6;
+}
+
+.preferred-section-header {
+  background: linear-gradient(90deg, #f8fafc 0%, #f1f5f9 100%);
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.all-countries-header {
+  background: linear-gradient(90deg, #fafafa 0%, #f5f5f5 100%);
+}
+
+/* Hover effects for preferred countries */
+.preferred-country:hover {
+  background-color: #eff6ff !important;
+  border-left-color: #2563eb;
+}
+
+/* Loading state for IP detection */
+.detecting-country {
+  position: relative;
+}
+
+.detecting-country::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 8px;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #e5e7eb;
+  border-top: 2px solid #3b82f6;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  transform: translateY(-50%);
+}
+
+@keyframes spin {
+  0% {
+    transform: translateY(-50%) rotate(0deg);
+  }
+  100% {
+    transform: translateY(-50%) rotate(360deg);
+  }
+}
+
+/* Responsive design */
+@media (max-width: 640px) {
+  .country-dropdown {
+    width: 100vw;
+    left: 50%;
+    transform: translateX(-50%);
+    max-width: 320px;
+  }
+}
+
+/* Make country button shrink on tablet */
+@media (max-width: 1024px) {
+  .intl-phone-input .country-button,
+  .intl-phone-input button {
+    min-width: 60px !important;
+    padding-left: 0.25rem;
+    padding-right: 0.25rem;
+  }
+}
+
+/* Ensure phone input doesn't overflow */
+.intl-phone-input input[type='tel'] {
+  min-width: 0;
+  width: 100%;
+}

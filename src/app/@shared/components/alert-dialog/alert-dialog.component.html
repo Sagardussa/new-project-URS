@@ -1,0 +1,99 @@
+<div
+  class="success-message fixed z-10 top-0 left-0 right-0 bottom-0 w-full h-full bg-white pt-36"
+>
+  @if (alertType === 'success') {
+  <img
+    *ngIf="successIcon"
+    [src]="successIcon"
+    alt="Success Image"
+    class="mx-auto md:my-10 my-4 md:size-44 size-32 mb-0"
+  />
+  } @else if (alertType === 'error') {
+  <img
+    *ngIf="errorIcon"
+    [src]="errorIcon"
+    alt="Success Image"
+    class="mx-auto md:my-10 my-4 md:size-44 size-32 mb-0"
+  />
+  } @else {
+  <img
+    *ngIf="defaultIcon"
+    [src]="defaultIcon"
+    alt="Success Image"
+    class="mx-auto md:my-10 my-4 md:size-44 size-32 mb-0"
+  />
+  }
+  <h2 class="text-customBlack font-bold md:text-xl text-[15px] text-center md:mb-2 mb-0">
+    {{ title }}
+  </h2>
+  <p class="text-[#192537B3] font-medium md:text-[14px] text-[11px] text-center max-lg:px-6">
+    {{ message }}
+  </p>
+</div>
+
+<!-- <div
+  *ngIf="isVisible"
+  class="relative z-50"
+  aria-labelledby="modal-title"
+  role="dialog"
+  aria-modal="true"
+  data-modal-backdrop="static"
+>
+  <div
+    class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity pointer-events-none"
+  ></div>
+  <div class="fixed inset-0 z-10 w-screen overflow-y-auto pointer-events-auto">
+    <div
+      class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0"
+    >
+      <div
+        class="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg h-[380px]"
+      >
+        <div
+          class="success-message fixed z-10 top-0 left-0 right-0 bottom-0 w-full h-full bg-white pt-36"
+        >
+          @if (alertType === 'success') {
+          <img
+            *ngIf="successIcon"
+            [src]="successIcon"
+            alt="Success Image"
+            class="mx-auto my-10 size-44"
+          />
+          } @else if (alertType === 'error') {
+          <img
+            *ngIf="errorIcon"
+            [src]="errorIcon"
+            alt="Success Image"
+            class="mx-auto my-10 size-44"
+          />
+          } @else {
+          <img
+            *ngIf="defaultIcon"
+            [src]="defaultIcon"
+            alt="Success Image"
+            class="mx-auto my-10 size-44"
+          />
+          }
+
+          <h2 class="text-customBlack font-bold text-xl text-center mb-2">
+            {{ title }}
+          </h2>
+          <p class="text-[#192537B3] font-medium text-[14px] text-center">
+            {{ message }}
+          </p>
+        </div>
+        <div
+          class="bg-gray-50 px-4 py-3 sm:flex sm:flex-row-reverse sm:px-6 dark:bg-gray-900"
+        >
+          <button
+            type="button"
+            (click)="close()"
+            class="mt-3 inline-flex w-full justify-center rounded-md bg-white dark:bg-white/20 dark:text-white px-3 py-2 text-sm font-semibold text-gray-900 dark:hover:bg-gray-800 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50 sm:mt-0 sm:w-auto"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->

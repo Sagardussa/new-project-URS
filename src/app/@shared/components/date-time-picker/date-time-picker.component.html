@@ -1,0 +1,143 @@
+<div class="relative" #datepickerRef>
+  <!-- Input Field -->
+  <div class="relative w-full sm:w-auto">
+    <div
+      class="absolute inset-y-0 start-0 flex items-center ps-2 pointer-events-none"
+    >
+      <svg
+        class="w-4 h-4 text-gray-500 dark:text-gray-400"
+        aria-hidden="true"
+        xmlns="http://www.w3.org/2000/svg"
+        fill="currentColor"
+        viewBox="0 0 20 20"
+      >
+        <path
+          d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"
+        />
+      </svg>
+    </div>
+    <input
+      [formControl]="dateRangeControl"
+      readonly
+      (click)="toggleDatepicker($event)"
+      id="datepicker-range-start"
+      name="start"
+      type="text"
+      class="bg-gray-50 border border-gray-300 w-full text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+      [placeholder]="placeHolder"
+    />
+  </div>
+
+  <!-- Dropdown Container -->
+  <div
+    *ngIf="isOpen"
+    class="absolute mt-1 w-full sm:w-[375px] rounded-xl border border-gray-200 bg-white shadow-lg dark:border-gray-700 dark:bg-gray-800 z-50"
+  >
+    <!-- Time Picker -->
+    <div class="p-4">
+      <div class="flex items-center justify-between">
+        <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+        Current Time
+        </span>
+        <span class="text-lg font-bold text-gray-900 dark:text-white">
+          {{ currentTime }}
+        </span>
+      </div>
+      <div class="flex gap-2 mt-3">
+        <!-- Hour -->
+        <select
+          [(ngModel)]="selectedHour"
+          (change)="updateSelectedTime($event)"
+          class="w-full p-2 rounded-lg border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 text-gray-900 dark:text-white"
+        >
+          <option *ngFor="let hour of hours" [value]="hour">
+            {{ hour }}
+          </option>
+        </select>
+
+        <!-- Minute -->
+        <select
+          [(ngModel)]="selectedMinute"
+          (change)="updateSelectedTime($event)"
+          class="w-full p-2 rounded-lg border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 text-gray-900 dark:text-white"
+        >
+          <option *ngFor="let minute of minutes" [value]="minute">
+            {{ minute }}
+          </option>
+        </select>
+
+        <!-- Second -->
+        <select
+          [(ngModel)]="selectedSecond"
+          (change)="updateSelectedTime($event)"
+          class="w-full p-2 rounded-lg border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 text-gray-900 dark:text-white"
+        >
+          <option *ngFor="let second of seconds" [value]="second">
+            {{ second }}
+          </option>
+        </select>
+
+        <!-- AM/PM -->
+        <select
+          [(ngModel)]="selectedAmPm"
+          (change)="updateSelectedTime($event)"
+          class="w-full p-2 rounded-lg border border-gray-300 bg-gray-50 dark:bg-gray-700 dark:border-gray-600 text-gray-900 dark:text-white"
+        >
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Date Picker -->
+    <div class="border-t border-gray-200 dark:border-gray-700 p-4">
+      <div class="flex items-center justify-between">
+        <button
+          (click)="prevMonth($event)"
+          [disabled]="isPrevDisabled()"
+          class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50"
+        >
+        Prev
+        </button>
+        <div class="text-center">
+          <span
+            (click)="toggleMonthSelect($event)"
+            class="cursor-pointer font-medium text-gray-700 dark:text-gray-200"
+          >
+            {{ months[currentDate.getMonth()].month }}
+          </span>
+          <span
+            (click)="toggleYearSelect($event)"
+            class="cursor-pointer font-medium text-gray-700 dark:text-gray-200"
+          >
+            {{ currentDate.getFullYear() }}
+          </span>
+        </div>
+        <button
+          (click)="nextMonth($event)"
+          [disabled]="isNextDisabled()"
+          class="p-2 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 disabled:opacity-50"
+        >
+          next
+        </button>
+      </div>
+
+      <div class="grid grid-cols-7 mt-4">
+        <div
+          *ngFor="let day of weekDays"
+          class="text-center text-sm font-medium text-gray-500 dark:text-gray-400"
+        >
+          {{ day.week }}
+        </div>
+        <div
+          *ngFor="let day of calendarDays"
+          [ngClass]="getDayClass(day)"
+          class="cursor-pointer text-center"
+          (click)="!isDateDisabled(day) && selectDate(day)"
+        >
+          {{ day.getDate() }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

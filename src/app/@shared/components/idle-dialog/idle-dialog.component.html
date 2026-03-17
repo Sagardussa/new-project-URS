@@ -1,0 +1,66 @@
+<div class="idle-dialog-overlay" *ngIf="showDialog">
+  <div class="idle-dialog-container">
+    <div class="idle-dialog-content">
+      <!-- Header -->
+      <div class="idle-dialog-header">
+        <div class="idle-icon attention-pulse">
+          ⚠️
+        </div>
+        <div class="header-content">
+          <h2 class="idle-dialog-title">Session Timeout Warning</h2>
+          <div class="attention-indicator">
+            <span class="attention-text">Attention Required</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Body -->
+      <div class="idle-dialog-body">
+        <p class="idle-message">
+          You have been idle for a while. Your session will expire soon. Do you want to stay logged in?
+        </p>
+
+        <!-- Countdown Timer -->
+        <div class="countdown-container">
+          <div class="countdown-timer">
+            <span class="time-display">{{ getTimeDisplay() }}</span>
+            <span class="time-label">remaining</span>
+          </div>
+
+          <!-- Progress Bar -->
+          <div class="progress-container">
+            <div class="progress-bar">
+              <div
+                class="progress-fill"
+                [style.width.%]="progressPercentage"
+                [style.background-color]="getProgressColor()"
+              ></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="idle-dialog-footer">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="onLogout()"
+          [disabled]="idleState.timeRemaining <= 0 || isExtending"
+        >
+          <i class="pi pi-sign-out" style="margin-right: 8px;"></i>
+          Logout
+        </button>
+        <button
+          type="button"
+          class="btn btn-primary"
+          (click)="onStayLoggedIn()"
+          [disabled]="idleState.timeRemaining <= 0 || isExtending"
+        >
+          <i class="pi pi-refresh" style="margin-right: 8px;" [class.pi-spin]="isExtending"></i>
+          {{ isExtending ? 'Extending...' : 'Stay Logged In' }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

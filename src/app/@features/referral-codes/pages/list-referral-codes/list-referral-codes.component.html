@@ -1,0 +1,47 @@
+<div class="mx-auto px-4 sm:px-6 lg:px-8 pt-14 lg:mt-16">
+  <div
+    class="flex flex-col md:flex-row justify-between items-center md:pt-3 pt-3"
+  >
+    <div class="flex items-center">
+      <app-page-heading title="Referral Codes"></app-page-heading>
+    </div>
+    <div class="flex flex-row md:flex-row items-center justify-between">
+      <div class="flex flex-row md:flex-row gap-3">
+        <app-search
+          class="w-auto"
+          [placeholder]="searchPlaceholder"
+          (searchChange)="onSearchChange($event)"
+        >
+          <input #searchInput style="display:none" />
+        </app-search>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mx-auto sm:px-6 lg:px-8 sm:mt-1 px-4 pb-8">
+  <div class="py-4">
+    @if (loading) {
+      <p class="text-[#192537CC]">Loading referral codes…</p>
+    } @else if (error) {
+      <p class="text-red-600 font-medium">{{ error }}</p>
+    } @else {
+      <dynamic-table
+        [rowData]="rowData"
+        [totalRows]="totalRows"
+        [pageSize]="pageSize"
+        [currentPage]="currentPage"
+        [colDefs]="columnDefs"
+        [showPagination]="true"
+        [showActionColumn]="true"
+        [showView]="true"
+        [showEdit]="false"
+        [showDelete]="false"
+        [idField]="'uuid'"
+        (paginationChanged)="onPaginationChanged($event)"
+        (viewClicked)="onView($event)"
+      >
+      </dynamic-table>
+    }
+  </div>
+</div>

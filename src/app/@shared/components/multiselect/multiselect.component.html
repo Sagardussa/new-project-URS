@@ -1,0 +1,149 @@
+<div
+  class="relative w-full font-sans"
+  [class.opacity-50]="disabled()"
+  [class.pointer-events-none]="disabled()"
+>
+  <!-- Main input/display area -->
+  <div
+    class="relative min-h-[40px] px-3 py-1 border border-gray-400 rounded-md bg-white cursor-pointer transition-all duration-200 flex items-center flex-wrap gap-1 input-style-main"
+    [class.border-red-500]="hasError()"
+    [class.border-blue-500]="isOpen() && !hasError()"
+    (click)="focusMainInput()"
+  >
+    <!-- Selected chips display -->
+    <div
+      class="flex flex-wrap gap-1"
+      *ngIf="showChips() && allSelectedItems().length > 0"
+    >
+      <div
+        *ngFor="let item of allSelectedItems(); trackBy: trackByItem"
+        class="inline-flex items-center px-2 py-1 bg-blue-100  border border-blue-200 rounded-full text-xs text-blue-800  max-w-[200px]"
+        [class]="chipClass()"
+        (click)="$event.stopPropagation()"
+      >
+        <span class="overflow-hidden text-ellipsis whitespace-nowrap mr-1">{{
+          item.label
+        }}</span>
+        <button
+          type="button"
+          class="bg-transparent border-none text-blue-600  cursor-pointer text-sm leading-none p-0 ml-1 flex items-center justify-center w-4 h-4 rounded-full transition-all duration-200 hover:bg-blue-200  hover:text-blue-800 disabled:opacity-50 disabled:cursor-not-allowed"
+          (click)="removeItem(item)"
+          [disabled]="disabled()"
+        >
+          ×
+        </button>
+      </div>
+    </div>
+
+    <!-- Main input field -->
+    <input
+      #mainInput
+      type="text"
+      class="flex-1 min-w-[100px] h-[28px] bg-transparent border-none outline-none text-gray-900  placeholder-gray-500  border border-gray-400 rounded-lg"
+      [id]="id()"
+      [placeholder]="getInputPlaceholder()"
+      [value]="currentInputText()"
+      (input)="onMainInputChange($event)"
+      (keydown)="onMainInputKeyDown($event)"
+      (focus)="onMainInputFocus()"
+      (blur)="onMainInputBlur()"
+      [disabled]="disabled() || !canAddMore()"
+      (click)="$event.stopPropagation()"
+    />
+
+    <!-- Dropdown arrow -->
+    <div
+        class="ml-2 transition-transform duration-200 text-gray-500  text-xs cursor-pointer"
+      [class.rotate-180]="isOpen()"
+      (click)="toggleDropdown(); $event.stopPropagation()"
+    >
+      ▼
+    </div>
+  </div>
+
+  <!-- Dropdown menu -->
+  <div
+    class="absolute top-full left-0 right-0 bg-white  border border-gray-300  rounded-lg shadow-lg z-50 max-h-[300px] overflow-hidden flex flex-col mt-1"
+    [class]="dropdownClass()"
+    *ngIf="isOpen()"
+  >
+    <!-- Options list -->
+    <div
+      class="flex-1 overflow-y-auto max-h-[250px]"
+      *ngIf="filteredOptions().length > 0"
+    >
+      <div
+        *ngFor="let option of filteredOptions(); trackBy: trackByOption"
+        class="flex items-center px-3 py-2 cursor-pointer transition-colors duration-200 gap-3 hover:bg-gray-100  "
+        [ngClass]="{
+          'bg-blue-50': isOptionSelected(option),
+          'opacity-50 cursor-not-allowed': option.disabled
+        }"
+        (click)="onOptionClick(option)"
+      >
+        <div class="relative flex items-center">
+          <input
+            type="checkbox"
+            [checked]="isOptionSelected(option)"
+            [disabled]="option.disabled || disabled()"
+            (click)="$event.stopPropagation()"
+            (change)="onOptionClick(option)"
+            class="absolute opacity-0 cursor-pointer h-0 w-0"
+          />
+          <span
+            class="h-4 w-4 bg-white border-2 border-gray-300  rounded relative transition-all duration-200"
+            [class.bg-blue-500]="isOptionSelected(option)"
+            [class.border-blue-500]="isOptionSelected(option)"
+          >
+            <span
+              *ngIf="isOptionSelected(option)"
+              class="absolute left-1 top-0.5 w-1 h-2 border-solid border-white border-r-2 border-b-2 transform rotate-45"
+            ></span>
+          </span>
+        </div>
+        <span class="flex-1 text-sm text-gray-900">{{
+          option.label
+        }}</span>
+      </div>
+    </div>
+
+    <!-- No results message -->
+    <div
+      class="p-3 text-center text-gray-500  italic text-sm"
+      *ngIf="
+        filteredOptions().length === 0 && currentInputText().trim().length > 0
+      "
+    >
+      No matching options found
+      <div class="mt-2" *ngIf="allowCustomText()">
+        <span class="text-xs"
+          >Press Enter to add "{{ currentInputText().trim() }}" as custom
+          option</span
+        >
+      </div>
+    </div>
+
+    <!-- Empty state when no input -->
+    <div
+      class="p-3 text-center text-gray-500 italic text-sm"
+      *ngIf="
+        filteredOptions().length === 0 && currentInputText().trim().length === 0
+      "
+    >
+      Start typing to search options or add custom items
+    </div>
+
+    <!-- Selection limits info -->
+    <div
+      class="px-3 py-2 bg-gray-50  border-t border-gray-200 text-xs text-gray-500  text-center"
+      *ngIf="maxSelections() > 0"
+    >
+      {{ allSelectedItems().length }} / {{ maxSelections() }} selected
+    </div>
+  </div>
+
+  <!-- Error message -->
+  <div class="mt-1 text-xs text-red-500 " *ngIf="hasError()">
+    {{ errorMessage() }}
+  </div>
+</div>

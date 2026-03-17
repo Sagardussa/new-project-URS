@@ -1,0 +1,31 @@
+<div
+  class="fixed inset-0 flex items-center justify-center z-[100] transition-opacity duration-300 overflow-y-auto backdrop-blur-[4px]"
+  (keydown)="handleKeyDown($event)"
+  tabindex="0"
+>
+  <!-- Modal Background -->
+  <div class="fixed inset-0 bg-gray-900 bg-opacity-50" (click)="closeModal()"></div>
+
+  <!-- Modal Content -->
+  <div
+    class="relative bg-white rounded-lg shadow-lg z-10 transform transition-transform duration-300 w-[fit] overflow-hidden max-w-2xl"
+  >
+    <!-- Modal Header -->
+    <div class="flex items-center justify-between p-4 border-b border-gray-200">
+      <h2 class="text-lg font-semibold text-gray-800">{{ title }}</h2>
+      <button
+        (click)="closeModal()"
+        class="text-gray-400 hover:text-gray-600 transition-colors"
+        aria-label="Close modal"
+      >
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+        </svg>
+      </button>
+    </div>
+    <!-- Modal Body -->
+    <div class="overflow-y-auto max-h-[75vh]">
+      <ng-content></ng-content>
+    </div>
+  </div>
+</div>

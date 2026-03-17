@@ -1,0 +1,139 @@
+<div class="w-full">
+  <!-- Section Header -->
+  <div *ngIf="sectionName || sectionDescription" class="mb-4">
+    <h3 *ngIf="sectionName" class="text-lg font-semibold text-gray-900">{{ sectionName }}</h3>
+    <p *ngIf="sectionDescription" class="text-sm text-gray-500 mt-1">{{ sectionDescription }}</p>
+  </div>
+
+  <form [formGroup]="sectionForm" (ngSubmit)="onSubmit()">
+    <div class="grid gap-4"
+         [class.grid-cols-1]="columnsCount === 1"
+         [class.grid-cols-2]="columnsCount === 2"
+         [class.grid-cols-6]="columnsCount === 6">
+      <ng-container *ngFor="let field of sectionFields">
+        <div class="w-full"
+             [class.col-span-2]="field.colSpan === 2">
+          <!-- Text Input Fields (text, email, date, url, number, address, password) -->
+          <app-text-field
+            *ngIf="isTextField(field)"
+            [field]="field"
+            [control]="getFormControl(field.slug)"
+            [submitted]="submitted">
+          </app-text-field>
+
+          <!-- Textarea Field -->
+          <app-textarea-field
+            *ngIf="isTextareaField(field)"
+            [field]="field"
+            [control]="getFormControl(field.slug)"
+            [submitted]="submitted">
+          </app-textarea-field>
+
+          <!-- Dropdown Field (optionsOverrides applied for e.g. triggerEvent from API) -->
+          <app-dropdown-field
+            *ngIf="isDropdownField(field)"
+            [field]="getFieldWithOptions(field)"
+            [control]="getFormControl(field.slug)"
+            [submitted]="submitted">
+          </app-dropdown-field>
+
+          <!-- Radio Field -->
+          <app-radio-field
+            *ngIf="isRadioField(field)"
+            [field]="field"
+            [control]="getFormControl(field.slug)"
+            [submitted]="submitted">
+          </app-radio-field>
+
+          <!-- Checkbox Field -->
+          <app-checkbox-field
+            *ngIf="isCheckboxField(field)"
+            [field]="field"
+            [control]="getFormControl(field.slug)"
+            [submitted]="submitted">
+          </app-checkbox-field>
+
+          <!-- File Field -->
+          <app-file-field
+            *ngIf="isFileField(field)"
+            [field]="field"
+            [control]="getFormControl(field.slug)"
+            [submitted]="submitted"
+            [allowedFileTypes]="allowedFileTypes"
+            [maxFileSize]="maxFileSize"
+            (fileSelected)="onFileSelected($event)"
+            (viewFile)="viewFile($event)">
+          </app-file-field>
+
+          <!-- Phone Field -->
+          <app-phone-field
+            *ngIf="isPhoneField(field)"
+            [field]="field"
+            [control]="getFormControl(field.slug)"
+            [submitted]="submitted"
+            [defaultCountry]="getDefaultCountryForPhoneField(field)"
+            (dialCodeChanged)="onPhoneDialCodeChange($event)"
+            (separatePhoneChanged)="onSeparatePhoneChange($event)"
+            (countryChanged)="onPhoneCountryChange($event)">
+          </app-phone-field>
+
+          <!-- Multiselect Field -->
+          <app-multiselect-field
+            *ngIf="isMultiselectField(field)"
+            [field]="field"
+            [control]="getFormControl(field.slug)"
+            [submitted]="submitted">
+          </app-multiselect-field>
+        </div>
+      </ng-container>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="mt-5 flex flex-row justify-end items-center gap-3 pt-4 border-t border-gray-200" *ngIf="showButtons && !isFormDisabled()">
+      <button
+        *ngIf="showResetButton"
+        type="button"
+        class="text-[#192537] text-[12px] font-medium border border-solid border-[#192537] rounded-[5px] px-6 py-2.5 cursor-pointer"
+        (click)="resetForm()">
+        {{ resetButtonText }}
+      </button>
+      <button
+        type="submit"
+        [disabled]="submitting"
+        class="text-[#FFFFFF] text-[12px] font-medium bg-gradient-to-r from-[#102F5D] to-[#192537] rounded-[5px] px-6 py-2.5 cursor-pointer disabled:opacity-50">
+        {{ submitting ? 'Saving...' : submitButtonText }}
+      </button>
+    </div>
+  </form>
+</div>
+
+<!-- File Preview Modal -->
+<app-modal
+  *ngIf="isModalOpen"
+  [title]="'Document Viewer'"
+  (close)="closeModal()">
+  <div class="h-[70vh] overflow-y-auto w-full max-w-2xl p-4">
+    <div class="flex justify-center">
+      <img
+        [src]="previewFileUrl"
+        alt="Document preview"
+        class="max-w-full max-h-[60vh] rounded-lg border border-gray-200 shadow-sm"
+        (error)="noDocumentPreview($event)"
+      />
+    </div>
+    <div class="flex justify-center gap-3 mt-4">
+      <button
+        type="button"
+        class="py-2 px-4 border border-gray-300 text-gray-700 font-medium rounded-lg text-sm hover:bg-gray-50"
+        (click)="closeModal()">
+        Close
+      </button>
+      <button
+        type="button"
+        class="py-2 px-4 bg-primary-600 text-white font-medium rounded-lg text-sm hover:bg-primary-700"
+        (click)="downloadDocument(previewFileUrl, previewFileName)">
+        Download
+      </button>
+    </div>
+  </div>
+</app-modal>

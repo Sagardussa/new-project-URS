@@ -1,0 +1,23 @@
+/* Login – match signup theme */
+.input-field {
+  outline: none;
+  border-color: rgb(229 231 235);
+}
+
+.input-field:focus {
+  border-color: #192537;
+  box-shadow: 0 0 0 3px rgba(25, 37, 55, 0.12);
+}
+
+.btn-primary {
+  background: linear-gradient(to right, #102f5d, #192537);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(to right, #192537, #102f5d);
+}
+
+.input-field:focus-visible {
+  outline: 2px solid #192537;
+  outline-offset: 2px;
+}

@@ -1,0 +1,14 @@
+.pages-heading::after {
+  content: "";
+  display: block;
+  left: 0;
+  width: 32px !important;
+  height: 2px;
+  background-color: #ff5757;
+}
+
+@media screen and (max-width: 767px) {
+  .pages-heading::after {
+    width: 25px !important;
+  }
+}
